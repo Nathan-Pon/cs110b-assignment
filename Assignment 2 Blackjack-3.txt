@@ -1,0 +1,100 @@
+//Assignment 2: Nathan Pon
+//This program allows the user to play blackjack
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main()
+{       
+//Variables for  cards and total
+     int card, total;
+     const int min_number = 1;
+     const int max_number = 10;
+     const int max_total = 21;
+     char repeat = 'y';
+
+//Get the system time     
+     unsigned seed = time(0);
+     
+//Seed the random number generator
+     srand(seed);
+
+     card = (rand() % (max_number - min_number +1)) + min_number;
+     cout << "first card: "<< card << endl;
+     total+=card;
+     while (total < max_total && repeat != 'n' )
+      {   
+         card = (rand() % (max_number - min_number + 1)) + min_number;
+         cout<<"card: "<< card << endl;
+         total+=card;
+         cout<< "total: "<< total << endl;
+         cout<<"Draw another card? ";
+         cin>> repeat;
+      }        
+ 
+     if (total > max_total )
+      {
+         cout<< "Bust"<< endl;
+         cout<< "Would you like to play again?(y/n)";
+         cin>> repeat;
+         
+         if (repeat == 'y')
+           {
+            main();
+           } 
+       
+      }
+     
+     else if (total = max_total)
+      {
+          cout<<"Blackjack! You win!"<< endl;
+          cout<<"Would you like to play again?(y/n)";
+          cin>> repeat;
+            
+          if (repeat == 'y')
+            {
+             main();
+            } 
+     }
+     
+return 0;
+}
+
+[npon@hills ~]$ g++ Blackjack.cpp
+[npon@hills ~]$ ./a.out Blackjack.cpp
+first card: 3
+card: 6
+total: 9
+Draw another card? y
+card: 3
+total: 12
+Draw another card? y
+card: 8
+total: 20
+Draw another card? y
+card: 1
+total: 21
+Draw another card? y
+Blackjack! You win!
+Would you like to play again?(y/n)y
+first card: 2
+card: 3
+total: 5
+Draw another card? y
+card: 8
+total: 13
+Draw another card? y
+card: 1
+total: 14
+Draw another card? y
+card: 1
+total: 15
+Draw another card? y
+card: 10
+total: 25
+Draw another card? y
+Bust
+Would you like to play again?(y/n)n
+[npon@hills ~]$ 
